@@ -26,12 +26,33 @@ const Template = () => {
                                 <Text>BODEGA:    ROMBO:</Text>
                             </View>
                             <View style={styles.tableCell}>
-                                <Text>Celda 3</Text>
+                                <Text>Fecha de Recepcion</Text>
                             </View>
                         </View>
                         <View style={styles.tableRow}>
                             <View style={styles.tableCell}>
-                                <Text>Celda 4</Text>
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 7</Text>
+                                    </View>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 8</Text>
+                                    </View>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 9</Text>
+                                    </View>
+                                </View>
+                                <View style={styles.tableRow}>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 10</Text>
+                                    </View>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 11</Text>
+                                    </View>
+                                    <View style={styles.tableCell}>
+                                        <Text>Celda 12</Text>
+                                    </View>
+                                </View>
                             </View>
                             <View style={styles.tableCell}>
                                 <Text>Celda 5</Text>
@@ -149,7 +170,7 @@ const styles = StyleSheet.create({
     imageCell: {
         textAlign: 'center',
         padding: 0,
-        width:10
+        width: 10
     },
     image: {
         width: 50, // Ancho de la imagen
