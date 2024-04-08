@@ -1,5 +1,6 @@
 import React from "react";
 import logo from "./images/va.jpeg";
+import styles from "./styles";
 import {
   PDFViewer,
   PDFDownloadLink,
@@ -10,8 +11,8 @@ import {
   View,
   StyleSheet,
 } from "@react-pdf/renderer";
-
 const Template = () => {
+  const datosLocalStorage = JSON.parse(localStorage.getItem('datos'));
   return (
     <Document>
       <Page style={styles.page}>
@@ -19,161 +20,180 @@ const Template = () => {
           <View style={styles.table}>
             <View style={styles.tableRow}>
               <View style={[styles.tableCell, styles.imageCell]}>
-                <Image src={logo} style={styles.image} />
+                <Image src={logo} style={styles.imageCabecera} />
               </View>
               <View style={styles.tableCellAddress}>
-                <Text>
-                  QUITO MATRIZ:Av.Occidental N52-120 y Av.La Florida
-                  Telefono:(02)3959060
+                <Text style={styles.textCabecera}>
+                  Agencia:
+                  <Text style={styles.text}> {datosLocalStorage ? datosLocalStorage.agencia : ''}</Text>
                 </Text>
-                <Text>
-                  GUAYAQUIL SUCURSAL:Av.Carlos Julio Arosemena Km.1
-                  Telefono:(04)2590840
-                </Text>
-                <Text>
-                  MANTA SUCURSAL:Ciudadela Umiña Via de Circunvalación junto a
-                  Tecnicentro Nitroauto Telefono: :(05)3700383
-                </Text>
-                <Text>
-                  PORTOVIEJO SUCURSAL:Av.Metropolitan a Km 1.5 via a Manta junto
-                  a Ediasa Telefono:(05)3701575
-                </Text>
-                <Text>PBX:1800827282 www.vallejoaraujo.com</Text>
               </View>
-              <View style={styles.tableCell}>
-                <Text>1800-827282 Opción 1</Text>
-                <Text>VALLEJO ARAUJO S.A</Text>
-                <Text>ORDEN DE TRABAJO TALLER</Text>
-                <Text>BODEGA: ROMBO:</Text>
+
+              <View style={styles.tableCellAddress}>
+                <Text style={styles.textCabecera}>
+                  O/R:
+                  <Text style={styles.text}> {datosLocalStorage ? datosLocalStorage.orden : ''}</Text>
+                </Text>
               </View>
+
+            </View>
+
+            <View style={styles.tableRow}>
               <View style={styles.tableCell}>
-              <Text>OT:</Text>
-                <Text>Fecha de Recepcion</Text>
+                <Text style={styles.textTitulo}>
+                  DETALLE DE RECEPCIÓN DE VEHÍCULO
+                </Text>
               </View>
             </View>
+
+            <View style={styles.tableRow}>
+              <View style={styles.tableCell}>
+                <Text style={styles.textsubtext}>Propietario:
+                  <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.propietario : ''}</Text>
+                </Text>
+              </View>
+            </View>
+
+            <View style={[styles.tableRow, { backgroundColor: 'lightgrey' }]}>
+              <View style={styles.tableCell}>
+                <Text style={styles.textFondoGris}>
+                  Datos de Vehiculo
+                </Text>
+              </View>
+            </View>
+
             <View style={styles.tableRow}>
               <View style={styles.tableCell}>
                 <View style={styles.tableRow}>
                   <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>NOMBRE DEL CLIENTE:</Text>
-                    <Text style={styles.TextSpace}>FACTURAR A:</Text>
-                    <Text style={styles.TextSpace}>TERMINOS DE PAGO:</Text>
-                    <Text style={styles.TextSpace}>MODELO:</Text>
-                    <Text style={styles.TextSpace}>V/N:</Text>
-                    <Text style={styles.TextSpace}>T/A:             T/M:             4/4:            4/2:   </Text>
+                    <Text style={styles.textsubtext}>Vehiculo:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.vehiculo : ''}</Text>
                   </View>
                   <View style={styles.tableCell}>
-                    <Text> </Text>
+                    <Text style={styles.textsubtext}>Placa:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.placa : ''}</Text>
                   </View>
                   <View style={styles.tableCell}>
-                    <Text> </Text>
+                    <Text style={styles.textsubtext}>Anio:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.anio : ''}</Text>
                   </View>
                   <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}>TELEFONO:</Text>
-                    <Text style={styles.TextSpace}>AÑO:</Text>
-                    <Text style={styles.TextSpace}>MOTOR:</Text>
-                    <Text style={styles.TextSpace}>ASESOR DE SERVICIO:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>RUC/CI:</Text>
-                    <Text style={styles.TextSpace}>DIRECCIÓN:</Text>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}>COLOR:</Text>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}> </Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>CORREO:</Text>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}> </Text>
-                    <Text style={styles.TextSpace}>PLACA:</Text>
-                    <Text style={styles.TextSpace}>KMS:</Text>
-                    <Text style={styles.TextSpace}></Text>
-                  </View>
-                </View>
-                <View style={styles.tableRow}>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Antena:</Text>
-                    <Text style={styles.TextSpace}>Encendedor:</Text>
-                    <Text style={styles.TextSpace}>Llantas:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Radio:</Text>
-                    <Text style={styles.TextSpace}>Moqueta:</Text>
-                    <Text style={styles.TextSpace}>Gata:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Plumas</Text>
-                    <Text style={styles.TextSpace}>Espejos:</Text>
-                    <Text style={styles.TextSpace}>Herramien:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Extinguidor:</Text>
-                    <Text style={styles.TextSpace}>Combustible:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Control puerta:</Text>
-                    <Text style={styles.TextSpace}>Triangulos:</Text>
-                    <Text style={styles.TextSpace}>Llave Ruedas:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Seguros Aros:</Text>
-                    <Text style={styles.TextSpace}>Cd´s:</Text>
-                    <Text style={styles.TextSpace}>Botiquín:</Text>
-                  </View>
-                  <View style={styles.tableCell}>
-                    <Text style={styles.TextSpace}>Signos:</Text>
-                    <Text style={styles.TextSpace}>Tapacubos:</Text>
-                    <Text style={styles.TextSpace}>TapaGas:</Text>
+                    <Text style={styles.textsubtext}>Chasis:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.chasis : ''}</Text>
                   </View>
                 </View>
               </View>
             </View>
+
+            <View style={[styles.tableRow, { backgroundColor: 'lightgrey' }]}>
+              <View style={styles.tableCell}>
+                <Text style={styles.textFondoGris}>
+                  Datos de Facturacion
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.tableRow}>
+              <View style={styles.tableCellNew}>
+                <View style={styles.tableRowNew}>
+                  <View style={styles.tableCellNew}>
+                    <Text style={styles.textsubtext}>Facturado:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.propietario : ''}</Text>
+                  </View>
+                  <View style={styles.tableCellNew}>
+                    <Text style={styles.textsubtext}>Identificacion:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.identificacoin : ''}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            <View style={styles.tableRow}>
+              <View style={styles.tableCell}>
+                <View style={styles.tableRow}>
+                  <View style={styles.tableCellNew}>
+                    <Text style={styles.textsubtext}>Mail:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.mail : ''}</Text>
+                  </View>
+                  <View style={styles.tableCell}>
+                    <Text style={styles.textsubtext}>Telefono:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.telefono : ''}</Text>
+                  </View>
+                  <View style={styles.tableCell}>
+                    <Text style={styles.textsubtext}>Direccion:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.direccion : ''}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+            <View style={[styles.tableRow, { backgroundColor: 'lightgrey' }]}>
+              <View style={styles.tableCell}>
+                <Text style={styles.textFondoGris}>
+                  Datos de Recepcion y Entrega
+                </Text>
+              </View>
+            </View>
+
+            <View style={styles.tableRow}>
+              <View style={styles.tableCell}>
+                <View style={styles.tableRow}>
+                  <View style={styles.tableCell}>
+                    <Text style={styles.textsubtext}>Fecha y hora de recepción:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.recepción : ''}</Text>
+                  </View>
+                  <View style={styles.tableCell}>
+                    <Text style={styles.textsubtext}>Fecha y hora de entrega:</Text>
+                    <Text style={styles.textsubtextresult}> {datosLocalStorage ? datosLocalStorage.entrega : ''}</Text>
+                  </View>
+                </View>
+              </View>
+            </View>
+
+
             <View style={styles.tableRow}>
               <View style={styles.tableCell2}>
                 <Text style={styles.TextSpace2}>REGISTRO DE LLAMADAS</Text>
                 <View style={styles.table1}>
-      {/* Encabezados */}
-      <View style={styles.headerRow}>
-        <View style={styles.headerCell1}><Text style={styles.headerText}>FECHA</Text></View>
-        <View style={styles.headerCell1}><Text style={styles.headerText}>HORA</Text></View>
-        <View style={styles.headerCell1}><Text style={styles.headerText}>USUARIO (Nombre y Firma)</Text></View>
-        <View style={styles.headerCell1}><Text style={styles.headerText}>Verificación (f)</Text></View>
-      </View>
-      {/* Filas de datos */}
-      <View style={styles.row}>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-      </View>
-      <View style={styles.row}>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-        <View style={styles.cell}><Text style={styles.cellText}></Text></View>
-      </View>
-    </View>
+                  {/* Encabezados */}
+                  <View style={styles.headerRow}>
+                    <View style={styles.headerCell1}><Text style={styles.headerText}>FECHA</Text></View>
+                    <View style={styles.headerCell1}><Text style={styles.headerText}>HORA</Text></View>
+                    <View style={styles.headerCell1}><Text style={styles.headerText}>USUARIO (Nombre y Firma)</Text></View>
+                    <View style={styles.headerCell1}><Text style={styles.headerText}>Verificación (f)</Text></View>
+                  </View>
+                  {/* Filas de datos */}
+                  <View style={styles.row}>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                  </View>
+                  <View style={styles.row}>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                  </View>
+                  <View style={styles.row}>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                  </View>
+                  <View style={styles.row}>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                  </View>
+                  <View style={styles.row}>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                    <View style={styles.cell}><Text style={styles.cellText}></Text></View>
+                  </View>
+                </View>
               </View>
               <View style={styles.tableCell}>
                 <Text style={styles.TextSpace2}>SINTOMAS PRESENTADOS</Text>
@@ -235,8 +255,8 @@ const Template = () => {
                 </Text>
               </View>
               <View style={styles.tableCell}>
-              <Image src={logo} style={styles.image} />
-              <Text style={styles.headerCell}>Rotura, faltante, abolladura y raspones marcados con (X)</Text>
+                <Image src={logo} style={styles.image} />
+                <Text style={styles.headerCell}>Rotura, faltante, abolladura y raspones marcados con (X)</Text>
               </View>
             </View>
             <View style={styles.tableRow}>
@@ -300,117 +320,7 @@ const Template = () => {
   );
 };
 
-// Estilos CSS para el PDF
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: "row",
-    backgroundColor: "#fff",
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-  table: {
-    display: "table",
-    width: "100%",
-  },
-  tableRow: {
-    flexDirection: "row",
-    borderBottomWidth: 1,
-    borderBottomColor: "#bfbfbf",
-    marginBottom:2,
-  },
-  tableCell: {
-    flex: 1,
-    padding: 1,
-    fontSize: 6,
-    marginBottom:2, 
-  },
-  tableCell2: {
-    flex: 1,
-    padding: 1,
-    fontSize: 6,
-    marginBottom:1, 
-    borderRight: 1,
-  },
-  tableCell3: {
-    flex: 1,
-    padding: 1,
-    fontSize: 6,
-    marginBottom:1, 
-    border:1,
-    fontSize:8,
-  },
-  tableCellAddress: {
-    flex: 1,
-    padding: 5,
-    fontSize: "6px",
-  },
-  imageCell: {
-    textAlign: "center",
-    padding: 0,
-    width: 10,
-  },
-  image: {
-    width: 50, // Ancho de la imagen
-    height: 50, // Alto de la imagen
-  },
-  headerCell: {
-    textAlign: "center",
-  },
-  table1: {
-    borderWidth: 1,
-    borderColor: 'black',
-    marginBottom: 5,
-  },
-  headerRow: {
-    flexDirection: 'row',
-    backgroundColor: '#f0f0f0', // Color de fondo para el encabezado
-  },
-  row: {
-    flexDirection: 'row',
-  },
-  headerCell1: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  cell: {
-    flex: 1,
-    borderWidth: 1,
-    borderColor: 'black',
-    padding: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  headerText: {
-    fontSize: 6,
-    fontWeight: 'bold',
-  },
-  cellText: {
-    fontSize: 6,
-  },
-  TextSpace: {
-    marginBottom: 2,
-  },
-  TextSpace1: {
-    marginBottom: 3,
-  },
-  TextSpace2: {
-    padding: 4,
-    marginBottom: 3,
-    fontWeight: 'bolder',
-  },
-  TextSpace4: {
-    marginBottom: 3,
-    textAlign: 'center',
-    
-  },
-});
+
 
 // Componente principal que utiliza react-to-pdf para generar el PDF
 const PDFGenerator = () => {
