@@ -10,8 +10,8 @@ import {
   View,
   StyleSheet,
 } from "@react-pdf/renderer";
-
 const Template = () => {
+const datosLocalStorage = JSON.parse(localStorage.getItem('datos'));
   return (
     <Document>
       <Page style={styles.page}>
@@ -22,35 +22,22 @@ const Template = () => {
                 <Image src={logo} style={styles.image} />
               </View>
               <View style={styles.tableCellAddress}>
-                <Text>
-                  QUITO MATRIZ:Av.Occidental N52-120 y Av.La Florida
-                  Telefono:(02)3959060
+                <Text style={styles.textCabecera}>
+                  Agencia: 
+                  <Text style={styles.text}> {datosLocalStorage ? datosLocalStorage.agencia : ''}</Text>
                 </Text>
-                <Text>
-                  GUAYAQUIL SUCURSAL:Av.Carlos Julio Arosemena Km.1
-                  Telefono:(04)2590840
-                </Text>
-                <Text>
-                  MANTA SUCURSAL:Ciudadela Umiña Via de Circunvalación junto a
-                  Tecnicentro Nitroauto Telefono: :(05)3700383
-                </Text>
-                <Text>
-                  PORTOVIEJO SUCURSAL:Av.Metropolitan a Km 1.5 via a Manta junto
-                  a Ediasa Telefono:(05)3701575
-                </Text>
-                <Text>PBX:1800827282 www.vallejoaraujo.com</Text>
+                
               </View>
+
               <View style={styles.tableCell}>
-                <Text>1800-827282 Opción 1</Text>
-                <Text>VALLEJO ARAUJO S.A</Text>
-                <Text>ORDEN DE TRABAJO TALLER</Text>
-                <Text>BODEGA: ROMBO:</Text>
-              </View>
-              <View style={styles.tableCell}>
-              <Text>OT:</Text>
-                <Text>Fecha de Recepcion</Text>
+              <Text style={styles.textCabecera}>
+                  O/R:
+                </Text>
+                <Text style={styles.text}>{datosLocalStorage ? datosLocalStorage.orden : ''}</Text>
               </View>
             </View>
+
+
             <View style={styles.tableRow}>
               <View style={styles.tableCell}>
                 <View style={styles.tableRow}>
@@ -346,6 +333,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     fontSize: "6px",
+    
   },
   imageCell: {
     textAlign: "center",
@@ -353,8 +341,8 @@ const styles = StyleSheet.create({
     width: 10,
   },
   image: {
-    width: 50, // Ancho de la imagen
-    height: 50, // Alto de la imagen
+    width: 125, // Ancho de la imagen
+    height: 125, // Alto de la imagen
   },
   headerCell: {
     textAlign: "center",
@@ -409,6 +397,16 @@ const styles = StyleSheet.create({
     marginBottom: 3,
     textAlign: 'center',
     
+  },
+  textCabecera: {
+    fontSize: 14,
+    fontFamily: 'Helvetica',
+    color: 'black',
+  },
+  text: {
+    fontSize: 12,
+    fontFamily: 'Helvetica',
+    color: 'black',
   },
 });
 
